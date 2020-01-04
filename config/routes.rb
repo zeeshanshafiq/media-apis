@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     member do
       get :library
-      post 'purchase/:media_type/:media_id/:purchase_option_id' => 'users#purchase', constraints: { media_type: /season|movie/ }
+      post 'purchase/:media_type/:media_id/:purchase_option_id' => 'users#purchase', constraints: { media_type: /season|movie/ }, as: :purchase_media
     end
   end
   resources :media, only: :index

@@ -11,9 +11,8 @@ class UsersController < ApplicationController
     if purchased
       render json: obj
     else
-      render json: obj.errors
+      render json: obj.errors, status: :unprocessable_entity
     end
-
   end
 
 end

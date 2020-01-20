@@ -7,11 +7,11 @@ class UsersController < ApplicationController
 
   def purchase
     user = User.find(params[:id])
-    purchased, obj = user.purchase_media(media_id: params[:media_id], media_type: params[:media_type], purchase_option_id: params[:purchase_option_id])
-    if purchased
-      render json: obj
+    media = user.purchase_media(media_id: params[:media_id], media_type: params[:media_type], purchase_option_id: params[:purchase_option_id])
+    unless media.errors.any?
+      render json: media
     else
-      render json: obj.errors, status: :unprocessable_entity
+      render json: media.errors, status: :unprocessable_entity
     end
   end
 

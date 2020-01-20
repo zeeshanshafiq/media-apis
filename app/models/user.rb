@@ -5,7 +5,6 @@ class User < ApplicationRecord
     purchae_option = PurchaseOption.find(purchase_option_id)
     klass = media_type.camelize.constantize
     purchaseable = klass.find(media_id)
-    purchase = purchases.build(purchaseable: purchaseable, purchase_option: purchae_option, expire_at: Time.now+2.day)
-    [purchase.save, purchase]
+    purchases.create(purchaseable: purchaseable, purchase_option: purchae_option, expire_at: Time.now+2.day)
   end
 end
